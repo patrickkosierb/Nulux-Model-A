@@ -1,0 +1,21 @@
+PINOUT
+======
+
+eink display
+-------------
+-GPIO23	: 	DIN
+-GPIO5	: 	CS
+-GPIO17	: 	DC
+-GPIO16	: 	RST
+-GPIO4	: 	BUSY
+-GPIO18	: 	CLK
+
+peripherals
+----------
+-GPIO2	: 	ONBOARD LED
+-GPIO22	: 	STOP LED 
+-GPIO21	: 	GO LED
+-GPIO14	: 	ENTER BUTTON
+-GPIO13	: 	LENGTH BUTTON
+-GPIO12	: 	SPLIT BUTTON
+-GPIO32	: 	BUZZER
