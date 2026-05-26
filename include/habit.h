@@ -13,7 +13,6 @@ struct Habit{
 };
 
 extern Habit habits[NUM_HABITS];
-int check_state(Habit* habit);
 
 uint16_t habits_avg_streak(void);
 uint8_t habits_completed(Habit * habit);

@@ -12,26 +12,6 @@ Habit habits[] = {
 
 static Preferences prefs;
 
-int check_state(Habit * habit){
-    int total_done=0;
-
-    for(int i=0;i<NUM_HABITS;i++){
-        if(habit[i].is_done)
-            total_done++;
-    }   
-
-    if(total_done==(NUM_HABITS)){
-        return SUPERHAPPY;
-    }else if(total_done>NUM_HABITS/2){
-        return HAPPY;
-    }
-    else if(total_done==0){
-        return SAD;
-    }else{
-        return NEUTRAL;
-    }
-}
-
 uint16_t habits_avg_streak() {
   if (NUM_HABITS == 0) return 0;
   uint32_t sum = 0;
@@ -109,6 +89,9 @@ bool time_is_valid() {
 }
 
 void check_day_rollover() {
+    struct tm t;
+    getLocalTime(&t);
+
     if (!time_is_valid())
         return;  // no valid time, skip — don't punish user 
 
@@ -125,7 +108,7 @@ void check_day_rollover() {
     if(any_broke)
         update_penguin(MOOD_SAD);
     else
-        update_penguin(check_state(habits));
+        update_penguin(mood_evaluate(habits_completed(habits), habits_avg_streak(), t.tm_hour));
     
     draw_habit(0);
 }

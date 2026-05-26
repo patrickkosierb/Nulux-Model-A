@@ -26,8 +26,6 @@ void init_hw(void){
     attachInterrupt(digitalPinToInterrupt(MID_BUTTON), midHandleISR, CHANGE);
     pinMode(LEFT_BUTTON, INPUT_PULLUP);  
     attachInterrupt(digitalPinToInterrupt(LEFT_BUTTON),  lHandleISR, FALLING);
-    // life led
-    // start_life();
 }
 
 void IRAM_ATTR rHandleISR() {
@@ -58,27 +56,6 @@ void IRAM_ATTR midHandleISR() {
             button_state = (held >= button_held) ? MID_HELD : MID_PRESSED;
         }
     }
-}
-
-void life_task(void * parameter) {
-    bool state_led = true;
-    for( ;; ){
-        digitalWrite(LIFE_LED,state_led);
-        delay(1000); // TODO: make this vTaskDelay()
-        state_led = !state_led;
-    }
-    vTaskDelete(NULL);
-}
-void start_life(){
-    TaskHandle_t xlife;
-    xTaskCreatePinnedToCore(life_task,"life",10000, NULL, 1,&xlife,0);
-};
-
-
-void buzz() {
-    ledcWrite(BUZZ_CHANNEL, 128);
-    delay(200);
-    ledcWrite(BUZZ_CHANNEL, 0);
 }
 
 void buzz_bling() {
@@ -238,7 +215,3 @@ void buzz_pomo_resume() {
     }
 }
 
-
-bool pressed(){
-    return button_state==RIGHT_PRESSED || button_state==MID_PRESSED || button_state==LEFT_PRESSED;
-}

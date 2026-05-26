@@ -1,5 +1,6 @@
-// mood.h
-#pragma once
+#ifndef MOOD_H
+#define MOOD_H
+
 #include <stdint.h>
 
 enum MoodState {
@@ -15,3 +16,5 @@ enum MoodState {
 };
 
 MoodState mood_evaluate(uint8_t habits_done, uint16_t streak, uint8_t hour);
+
+#endif

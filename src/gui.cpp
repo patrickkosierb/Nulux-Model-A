@@ -19,20 +19,10 @@ const uint8_t* penguin_animations[] = {
     epd_bitmap_study,
 };
 
-// USING STATE FUNCTION
-// const uint8_t* penguin_animations[] = {
-//     epd_bitmap_sleep,
-//     epd_bitmap_neutral,
-//     epd_bitmap_happy,
-//     epd_bitmap_sad,
-//     epd_bitmap_celebrating,
-// };
-
 // initialize display
 void init_gui(){
-  display.init(115200, true, 2, false); // USE THIS for Waveshare boards with "clever" reset circuit, 2ms reset pulse
+  display.init(115200, true, 2, false); 
   display.setRotation(1);
-  // display.setFont(&EBGaramond_VariableFont_wght14pt7b);
   display.setFont(&RobotoSlab_VariableFont_wght14pt7b);
 
   display.setTextColor(GxEPD_BLACK);
@@ -67,10 +57,9 @@ void gui_main_menu()
   display_current_time();
   do
   {
-    // update_penguin(check_state(habits));
     getLocalTime(&t);
     update_penguin(mood_evaluate(habits_completed(habits), habits_avg_streak(), t.tm_hour));
-    update_penguin(mood_evaluate(habits_completed(habits), habits_avg_streak(), t.tm_hour)); //test
+    update_penguin(mood_evaluate(habits_completed(habits), habits_avg_streak(), t.tm_hour)); //TODO: Work around 
     draw_habit(0);
 
   }
@@ -78,7 +67,6 @@ void gui_main_menu()
 }
 
 
-// displays time ontop of penguin
 void display_current_time()
 {
   struct tm timeinfo;
@@ -91,9 +79,7 @@ void display_current_time()
 
   int16_t tbx, tby; uint16_t tbw, tbh;
   display.getTextBounds(time_str, 0, 0, &tbx, &tby, &tbw, &tbh);
-  // uint16_t tx = ((display.width() - tbw) / 2) - tbx;
   uint16_t tx = 0;
-
   uint16_t ty = tbh;
   uint16_t row_h = tbh + 4;
 
@@ -101,7 +87,7 @@ void display_current_time()
   display.firstPage();
   do
   {
-    display.fillRect(0, 0, display.width(), row_h, GxEPD_WHITE); // explicit clear
+    display.fillRect(0, 0, display.width(), row_h, GxEPD_WHITE);
     display.setCursor(tx, ty);
     display.print(time_str);
   }

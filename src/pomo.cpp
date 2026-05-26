@@ -51,7 +51,6 @@ void pomo_task(void* param){
   pomo_task_handle  = NULL;
   epoch = 0;
   draw_pomo(pomo_time);
-  // buzz_victory();
 
   vTaskDelete(NULL);  // task cleans itself up
 

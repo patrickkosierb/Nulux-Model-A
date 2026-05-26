@@ -15,8 +15,8 @@
 #define BUTTON_DEFUALT -1
 #define RIGHT_PRESSED   0
 #define MID_PRESSED  1
-#define LEFT_PRESSED   2
 #define MID_HELD   3
+#define LEFT_PRESSED   2
 
 /* initialize GPIO */
 void init_hw(void);
@@ -26,13 +26,8 @@ void IRAM_ATTR rHandleISR();
 void IRAM_ATTR midHandleISR();
 /* bottom button ISR */
 void IRAM_ATTR lHandleISR();
-/* life indicator task */
-void life_task(void * parameter);
-void start_life();
-/* logic for button press */
-bool pressed();
-/* buzzer activate task */
-void buzz();
+
+/* buzzer related */
 void buzz_bling();
 void buzz_victory();
 void buzz_startup();

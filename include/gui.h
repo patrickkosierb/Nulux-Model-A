@@ -13,7 +13,6 @@
 #include <Fonts/RobotoSlab_VariableFont_wght14pt7b.h>
 #include <Fonts/RobotoSlab_VariableFont_wght24pt7b.h>
 
-
 #include "moods/neutral.h"
 #include "moods/sleeping.h"
 #include "moods/happy.h"
@@ -32,7 +31,7 @@ void display_current_time();
 // penguin param
 const int penW = 150; 
 const int penH = 150; 
-const int initial_offset = 29; //29
+const int initial_offset = 29; 
 
 struct Penguin{
   int offset = initial_offset;
