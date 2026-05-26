@@ -17,10 +17,6 @@ void state_machine(){
         if(screen_state==STATE_MENU){
             Serial.println("RIGHT BUTTON");  
             cursor_pos++;
-            // pen_state = check_state(habits);
-            // pen_state = mood_evaluate(habits_completed(habits), habits_avg_streak(), t.tm_hour);
-            // update_penguin(pen_state);
-            
             if(cursor_pos>NUM_HABITS-1){
                 cursor_pos=0;
             }
@@ -38,9 +34,6 @@ void state_machine(){
         if(screen_state==STATE_MENU){
             Serial.println("LEFT BUTTON");
             cursor_pos--;
-            // pen_state = check_state(habits);
-            // pen_state = mood_evaluate(habits_completed(habits), habits_avg_streak(), t.tm_hour);        
-            // update_penguin(pen_state);
             if(cursor_pos<0){
                 cursor_pos=NUM_HABITS-1;
             }
@@ -67,7 +60,6 @@ void state_machine(){
             draw_habit(cursor_pos);
 
             getLocalTime(&t);
-            // pen_state = check_state(habits);
             pen_state = mood_evaluate(habits_completed(habits), habits_avg_streak(), t.tm_hour);
             update_penguin(pen_state);
 
@@ -90,7 +82,7 @@ void state_machine(){
                 //  INDICATE SOME PAUSED TEXT
             }else{
                 draw_pomo(pomo_time);
-                pomo_start(); //TODO: Make this a thread so its not blocking pauses
+                pomo_start();
             }
 
 
